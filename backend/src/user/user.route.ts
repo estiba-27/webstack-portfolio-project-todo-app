@@ -1,5 +1,6 @@
 import { Application } from "express";
 import { RouteConfig } from "../common/route.config";
+import authentication from "../middleware/authentication";
 import userController from "./user.controller";
 
 class UserRoute extends RouteConfig {
@@ -20,13 +21,13 @@ class UserRoute extends RouteConfig {
 			.post(userController.login)
 
 		this.router.route('/resume-session')
-			.post(userController.authorization, userController.resumeSession)
+			.post(authentication, userController.resumeSession)
 
 		this.router.route('/logout')
-			.post(userController.authorization, userController.logout)
+			.post(authentication, userController.logout)
 
 		this.router.route('/user')
-			.get(userController.authorization, userController.userInfo)
+			.get(authentication, userController.userInfo)
 	}
 }
 

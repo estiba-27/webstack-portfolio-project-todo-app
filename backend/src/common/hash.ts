@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import bcrypt from 'bcrypt'
 
 const rounds = Number(process.env.SALT_ROUNDS || 10)

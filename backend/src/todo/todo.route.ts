@@ -1,5 +1,6 @@
 import { Application } from "express";
 import { RouteConfig } from "../common/route.config";
+import authentication from "../middleware/authentication";
 import userController from "../user/user.controller";
 import todoController from "./todo.controller";
 
@@ -15,10 +16,10 @@ class TodoRoute extends RouteConfig {
 	}
 	configureRoutes(): void {
 		this.router.route('/todo')
-			.get(userController.authorization, todoController.getMyTodos)
-			.post(userController.authorization, todoController.createTodo)
-			.put(userController.authorization, todoController.toggleDone)
-			.delete(userController.authorization, todoController.deleteItem)
+			.get(authentication, todoController.getMyTodos)
+			.post(authentication, todoController.createTodo)
+			.put(authentication, todoController.toggleDone)
+			.delete(authentication, todoController.deleteItem)
 	}
 }
 

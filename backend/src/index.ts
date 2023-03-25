@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import { createServer } from 'http'
 import logger from './common/logger'
@@ -8,6 +9,8 @@ import { Database } from './database'
 import UserRoute from './user/user.route'
 import cors from 'cors'
 import TodoRoute from './todo/todo.route'
+import authorization from './middleware/authorization'
+import { ApiKey } from './api.key/api.key.entity'
 
 const routes: Array<RouteConfig> = []
 
@@ -23,14 +26,14 @@ app.use(morgan('combined', {
 	}
 }))
 
-
+app.use(authorization)
 routes.push(new UserRoute(app))
 routes.push(new TodoRoute(app))
 app.use(errorHandler)
 
 
 Database.initialize()
-	.then(() => {
+	.then(async () => {
 		logger.info('database connected')
 		server.listen(3000, () => {
 			logger.info('server started')
@@ -38,6 +41,17 @@ Database.initialize()
 				logger.info(`${route.getName()} configured`)
 			})
 		})
+
+		// create default api key
+		try {
+			const apiKey = new ApiKey()
+			apiKey.usedBy = 'frontend'
+			await apiKey.setToken(process.env.FRONTEND_API_KEY || "front-end-api-key")
+			await Database.getRepository(ApiKey).save(apiKey)
+			logger.debug('frontend api key is set')
+		} catch {
+			logger.debug('frontend api key is already set')
+		}
 	})
 	.catch(err => {
 		logger.error('database conneciton failed')

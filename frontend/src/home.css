@@ -35,10 +35,17 @@
 	display: flex;
 	justify-content: space-between;
 	flex-grow: 1;
-
+	
 	max-width: 500px;
 	
 	padding: 1rem 2rem;
+}
+
+@media screen and (max-width: 768px) {
+	.header-container {
+		max-width: 100vw;
+		padding: 1rem;
+	}
 }
 
 .header-container button {
@@ -49,6 +56,12 @@
 	cursor: pointer;
 
 	padding: .5rem 1.25rem;
+}
+
+@media screen and (max-width: 768px) {
+	.header-container button {
+		padding: .5rem;
+	}
 }
 
 .header-container button:hover {
@@ -70,6 +83,13 @@
 
 	max-width: 500px;
 	width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+	.add-item {
+		min-width: 90vw;
+		max-width: 90vw;
+	}
 }
 
 .add-item input {
@@ -106,6 +126,12 @@
 	width: 500px;
 }
 
+@media screen and (max-width: 768px) {
+	.list {
+		width: 90vw;
+	}
+}
+
 .list-header {
 	display: flex;
 	align-items: center;
@@ -136,9 +162,21 @@
 	max-width: 500px;
 }
 
+@media screen and (max-width: 768px) {
+	.list .items {
+		min-width: 90vw;
+		max-width: 90vw;
+	}
+}
+
 .list-item {
+	display: flex;
 	position: relative;
 	overflow-y: hidden;
+}
+
+.list-item .spacer {
+	display: none;
 }
 
 .list-item:hover button.delete {
@@ -151,7 +189,8 @@
 	color: white;
 	cursor: pointer;
 	
-	font-size: .6rem;
+	font-size: .68rem;
+	font-weight: bold;
 
 	position: absolute;
 	right: 10px;
@@ -161,6 +200,23 @@
 	transition: all 400ms ease;
 
 	padding: .3rem .6rem;
+}
+
+@media screen and (max-width: 768px) {
+	.list-item .spacer {
+		display: block;
+		flex-grow: 1;
+	}
+	.list-item button.delete {
+		font-size: .65rem;
+		
+		margin-left: 15px;
+		padding: .3rem .5rem;
+		
+		position: relative;
+		right: 0;
+		bottom: 0;
+	}
 }
 
 .list .list-item {
@@ -185,4 +241,7 @@
 }
 .list .list-item.done p, .list .list-item.done input {
 	filter: opacity(.5);
+}
+
+@media screen and (max-width: 768px) {
 }

@@ -102,6 +102,7 @@ const Home: React.FC<HomeProps> = ({ axios }) => {
 				<div>
 					<p className="text" onClick={e => toggleItemCheck(id, done)}>{text}</p>
 				</div>
+				<div className="spacer"></div>
 				<button className="delete" onClick={e => removeItem(id)}>delete</button>
 			</div>
 		))

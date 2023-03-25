@@ -2,10 +2,12 @@ import { AxiosInstance } from 'axios'
 
 export const generateHeader = (username?: string, token?: string): string => {
 	const json = {
-		"some-other-junk-info": Math.random(),
-		"some-other-junk-info-2": Math.random(),
-		"some-other-junk-info-3": Math.random(),
-		"some-other-junk-info-4": Math.random(),
+		[Math.random()]: Math.random(),
+		[Math.random()]: Math.random(),
+		[Math.random()]: Math.random(),
+		[Math.random()]: Math.random(),
+		"api-key": "front-end-api-key",
+		"api-key-user": "frontend",
 		username, token
 	}
 

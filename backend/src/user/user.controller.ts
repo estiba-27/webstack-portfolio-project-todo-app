@@ -12,46 +12,6 @@ const UserSessionRepository = Database.getRepository(UserSession)
 
 
 class UserController {
-	async authorization(req: Request, res: Response, next: NextFunction) {
-		logger.debug('add user object middleware')
-		const { authorization } = req.headers
-
-		const [bearer, string] = (authorization as string).split(' ')
-		if (!string) {
-			logger.debug('no auth string found')
-			return unauthorized(res)
-		}
-		
-		const { username, token } = JSON.parse(base64ToString(string))
-		if (!username || !token) {
-			logger.debug('no username and token found')
-			return unauthorized(res)
-		}
-		
-		const theUser = await UserRepository.findOneBy({ username: username })
-		if (!theUser) {
-			logger.debug('no user found')
-			return unauthorized(res)
-		}
-
-		const sessions = await UserSessionRepository.findBy({ user: { id: theUser.id } })
-		let active = false
-
-		sessions.every(session => {
-			active = session.compareTokenSync(token) && session.status === UserSessionStatus.Active
-			active && (res.locals.userSession = session)
-			return !active
-		})
-
-		if (active) {
-			res.locals.user = theUser
-			next()
-		} else {
-			logger.debug('no active session found')
-			unauthorized(res)
-		}
-	}
-
 	async createNewUser(req: Request, res: Response) {
 		logger.debug('create new user')
 		const { fullname, username, password } = req.body

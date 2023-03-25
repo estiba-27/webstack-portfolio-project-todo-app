@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { createLogger, format, transports } from 'winston'
 
 const { combine, printf, timestamp, colorize } = format
