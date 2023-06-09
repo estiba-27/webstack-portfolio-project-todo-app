@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
+import 'express-async-errors'
 import { createServer } from 'http'
 import logger from './common/logger'
 import morgan from 'morgan'
@@ -27,9 +28,9 @@ app.use(morgan('combined', {
 }))
 
 app.use(authorization)
+app.use(errorHandler)
 routes.push(new UserRoute(app))
 routes.push(new TodoRoute(app))
-app.use(errorHandler)
 
 
 Database.initialize()
