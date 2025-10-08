@@ -8,6 +8,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
@@ -15,10 +16,22 @@ body {
   width: 100vw;
   height: 100vh;
 }
+html, body, #root, .app-root {
+  background-color: #9e7070 !important;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: #062e70
+  margin: 0;
+  padding: 0;
+}
 
 .root {
-  background-color: #12121277;
-
+   background-color: #f0f4f8; /* background of the page */
+  /*min-height: 100vh;          /* ensures it covers the full viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
 }

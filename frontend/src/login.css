@@ -1,0 +1,19 @@
+/* login.css */
+
+/* Make sure the wrapper fills the screen */
+.login-page {
+  background-color: #ffffff; /* white background */
+  min-height: 100vh;         /* full viewport height */
+  display: flex;
+  justify-content: center;    /* center horizontally */
+  align-items: center;        /* center vertically */
+}
+
+/* Optional: style the form itself */
+.login-form {
+  padding: 2rem;
+  background-color: #f8f9fa; /* light gray for the form box */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
